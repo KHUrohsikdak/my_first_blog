@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+  {% block content %}
+    {% if user.is_authenticated %}
+      <h2>Welcome {{user.username}}</h2>
+      <a href="{% url 'logout' %}">로그아웃</a>
+
+      <!--내가 쓴 글 목록 볼수있게 만들기 -->
+    {% else %}
+    <h2>로그인</h2>
+      <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="로그인" />
+    </form>
+    {% endif %}
+  {% endblock %}
